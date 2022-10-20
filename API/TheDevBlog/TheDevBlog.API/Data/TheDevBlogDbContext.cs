@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TheDevBlog.API.Models;
+using TheDevBlog.API.Models.Entities;
 
 namespace TheDevBlog.API.Data
 {

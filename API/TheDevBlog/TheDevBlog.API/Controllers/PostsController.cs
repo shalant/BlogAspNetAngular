@@ -69,26 +69,43 @@ namespace TheDevBlog.API.Controllers
         [Route("{id:guid}")]
         public async Task<IActionResult> UpdatePost([FromRoute]Guid id, UpdatePostRequest updatePostRequest)
         {
-            var post = new Post()
-            {
-                Title = updatePostRequest.Title,
-                Content = updatePostRequest.Content,
-                Author = updatePostRequest.Author,
-                FeaturedImageUrl = updatePostRequest.Title,
-                PublishDate = updatePostRequest.PublishDate,
-                UpdatedDate = updatePostRequest.UpdatedDate,
-                Summary = updatePostRequest.Summary,
-                UrlHandle = updatePostRequest.UrlHandle,
-                Visible = updatePostRequest.Visible,
-            };
-
             // check if exists
             var existingPost = await dbContext.Posts.FindAsync(id);
 
-            if(existingPost != null)
+            if (existingPost != null)
             {
-                post.Id = existingPost.Id;
+                existingPost.Title = updatePostRequest.Title;
+                existingPost.Content = updatePostRequest.Content;
+                existingPost.Author = updatePostRequest.Author;
+                existingPost.FeaturedImageUrl = updatePostRequest.Title;
+                existingPost.PublishDate = updatePostRequest.PublishDate;
+                existingPost.UpdatedDate = updatePostRequest.UpdatedDate;
+                existingPost.Summary = updatePostRequest.Summary;
+                existingPost.UrlHandle = updatePostRequest.UrlHandle;
+                existingPost.Visible = updatePostRequest.Visible;
+
+                await dbContext.SaveChangesAsync();
+
+                return Ok(existingPost);
             }
+
+            return NotFound();
+        }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> DeletePost(Guid id)
+        {
+            var existingPost = await dbContext.Posts.FindAsync(id);
+
+            if (existingPost != null)
+            {
+                dbContext.Remove(existingPost);
+                await dbContext.SaveChangesAsync();
+                return Ok(existingPost);
+            }
+
+            return NotFound();
         }
     }
 }
