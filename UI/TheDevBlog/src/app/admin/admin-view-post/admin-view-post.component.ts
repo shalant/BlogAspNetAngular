@@ -51,5 +51,15 @@ export class AdminViewPostComponent implements OnInit {
           alert('Success');
         }
       );
-  }
+    }
+
+      deletePost(): void {
+        this.postService.deletePost(this.post?.id)
+          .subscribe(
+            response => {
+              alert('Deleted succesfully!');
+            }
+          );
+      }
+  
 }

@@ -26,5 +26,12 @@ export class AdminAddPostComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    this.postService.addPost(this.post)
+      .subscribe(
+        response => {
+          alert('Success');
+        }
+      )
+  }
 }
