@@ -1,0 +1,46 @@
+<div class="container" *ngIf="post">
+    <br>
+    <br>
+    <h1>View Blog</h1>
+    <br>
+    <br>
+
+    <form #form="ngForm">
+        <div class="mb-3">
+          <label class="form-label">Id</label>
+          <input type="text" class="form-control" name="id" [(ngModel)]="post.id" readonly>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" [(ngModel)]="post.title">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Content</label>
+          <textarea class="form-control" name="content" [(ngModel)]="post.content"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Summary</label>
+            <input class="form-control" name="summary" [(ngModel)]="post.summary">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Featured Image URL</label>
+          <input class="form-control" name="featuredImageUrl" [(ngModel)]="post.featuredImageUrl">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">URL Handle</label>
+            <input class="form-control" name="urlHandle" [(ngModel)]="post.urlHandle">
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="visible" [(ngModel)]="post.visible">
+            <label class="form-check-label">Visible</label>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Author</label>
+            <input class="form-control" name="author" [(ngModel)]="post.author">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Author</label>
+            <input class="form-control" name="author" [(ngModel)]="post.author">
+        </div>
+    </form>
+</div>
